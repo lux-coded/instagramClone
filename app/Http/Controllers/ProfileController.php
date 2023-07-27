@@ -21,6 +21,8 @@ class ProfileController extends Controller
         ]);
     }
 
+    // protected $guarded = [];  
+
     /**
      * Update the user's profile information.
      */
@@ -32,6 +34,22 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'url',
+            'image' => '',
+        ]);
+
+        
+        if (request('image')) {
+            $imagePath = request('image')->store('profile', 'public');
+        };
+
+        auth()->user()->profile->update(array_merge(
+            $data,
+            ['image' => $imagePath],
+        ));
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

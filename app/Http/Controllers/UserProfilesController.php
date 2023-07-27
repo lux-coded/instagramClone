@@ -8,9 +8,10 @@ use Illuminate\View\View;
 class UserProfilesController extends Controller
 
 {
-    public function index($user): View
+    public function index($user)
     {
         $user = User::findOrFail($user);
+        // dd($user->profile);
         return view('user.index', [
             'user' => $user,
         ]);
