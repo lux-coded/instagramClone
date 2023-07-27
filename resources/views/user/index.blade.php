@@ -2,7 +2,7 @@
     <div class="container mx-auto">
         <div class="container mx-auto row flex p-5">
             <div class="col-3 xl:pt-10 pt-5 xl:pl-20 pl-5">
-                <img src="/storage/{{ $user->profile->image }}" class="w-full max-h-60 rounded-full bg-black" alt="">
+                <img src="/storage/{{ $user->profile->image }}" class="w-full aspect-square object-cover max-h-60 rounded-full bg-black" alt="">
             </div>
             <div class="col-9 lg:pt-20 pt-10 pl-10">
                 <div class="flex gap-4">
