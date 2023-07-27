@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserProfilesController;
 use Illuminate\Support\Facades\Route;
@@ -15,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserProfilesController::class, 'guest']);
 
-Route::get('/user/{id}', [UserProfilesController::class, 'show'])->name('user');
+Route::get('/p/{post}', [PostsController::class, 'show'])->name('posts.show');
+Route::get('/p/create', [PostsController::class, 'create'])->name('posts.create');
+Route::post('/p', [PostsController::class, 'store'])->name('posts.store');
+
+Route::get('/user/{id}', [UserProfilesController::class, 'index'])->name('user');
 
 
 // Route::get('/dashboard', function () {
