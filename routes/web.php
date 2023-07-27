@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserProfilesController::class, 'guest']);
 
-Route::get('/p/{post}', [PostsController::class, 'show'])->name('posts.show');
-Route::get('/p/create', [PostsController::class, 'create'])->name('posts.create');
 Route::post('/p', [PostsController::class, 'store'])->name('posts.store');
+Route::get('/p/create', [PostsController::class, 'create'])->name('posts.create');
+Route::get('/p/{post}', [PostsController::class, 'show'])->name('posts.show');
 
 Route::get('/user/{id}', [UserProfilesController::class, 'index'])->name('user');
 
