@@ -16,11 +16,18 @@ class UserProfilesController extends Controller
         ]);
     }
 
-    public function guest(): View
+    public function follow($id) {
+        echo ($id);
+    }
+
+    public function guest()
     {
         $id = Auth::id();
-        return view('welcome', [
-            'id' => $id,
-        ]);
+        if (Auth::check()) {
+
+            return redirect("/user/{$id}");
+        }
+        
+        return view('auth.login');
     }
 }

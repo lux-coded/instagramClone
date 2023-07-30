@@ -33,7 +33,7 @@
 
       <div>
           <x-input-label for="image" :value="__('Image')" />
-          <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" :value="old('image', $user->profile->image)" required autocomplete="image" />
+          <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" :value="old('image', $user->profile->image)" autocomplete="image" />
           <x-input-error class="mt-2" :messages="$errors->get('image')" />
       </div>
 
