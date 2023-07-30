@@ -3,14 +3,25 @@
         <div class="container mx-auto xl:py-10 p-4 xl:pl-20 gap-5 max-w-xl lg:max-w-3xl xl:max-w-full">
             <div class="flex gap-4">
                 <div class="w-24 md:w-32 lg:w-56 xl:w-fit">
-                    <img src="/storage/{{ $user->profile->image }}" class="aspect-square object-cover max-h-72 rounded-full bg-black" alt="">
+                    <img src="{{ $user->profile->profileImage() }}" class="aspect-square object-cover max-h-72 rounded-full bg-black" alt="">
                 </div>
                 <div class="flex flex-col flex-1 justify-center">
                     <div class="flex gap-4">
                         <h1 class="flex items-center text-2xl lg:text-3xl font-bold">{{ $user->username }}</h1>
-                        <div class="flex items-center justify-start">
-                            <a href="/profile" class="bg-transparent h-min hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-sm">Edit Profile</a>
-                        </div>
+                        @if ($user->id != Auth::id())
+                            <form method="POST" action="/follow/{{$user->id}}">
+                                @csrf
+                                <div class="flex items-center justify-start">
+                                    <button type="submit" class="bg-transparent h-min hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-sm">Follow</button>
+                                </div>
+                            </form>
+                        @endif
+                        @if ($user->id == Auth::id())
+                            <div class="flex items-center justify-start">
+                                <a href="/profile" class="bg-transparent h-min hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-sm">Edit Profile</a>
+                            </div>
+                        @endif
+                        
                     </div>
                     <div class="hidden lg:block pl-1">
                         <div class="flex gap-5 pt-4 w-full">

@@ -44,12 +44,14 @@ class ProfileController extends Controller
         
         if (request('image')) {
             $imagePath = request('image')->store('profile', 'public');
+            $imageArray = ['image' => $imagePath];
         };
 
         auth()->user()->profile->update(array_merge(
             $data,
-            ['image' => $imagePath],
+            $imageArray ?? [],
         ));
+
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

@@ -24,10 +24,7 @@ Route::get('/p/{post}', [PostsController::class, 'show'])->name('posts.show');
 
 Route::get('/user/{id}', [UserProfilesController::class, 'index'])->name('user');
 
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/follow/{id}', [UserProfilesController::class, 'follow'])->name('follow');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
